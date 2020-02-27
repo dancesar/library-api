@@ -38,7 +38,7 @@ public class BookControllerTest {
     BookService service;
 
     @Test
-    @DisplayName("Deve criar im livro com sucesso.")
+    @DisplayName("Deve criar um livro com sucesso.")
     public void createBookTest() throws Exception{
 
         BookDTO dto = BookDTO.builder().author("Danillo").title("As aventuras").isbn("001").build();
