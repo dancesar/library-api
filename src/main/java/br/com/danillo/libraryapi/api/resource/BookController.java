@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/books")
 public class BookController {
 
-    private BookService service;
-    private ModelMapper mapper;
+    private BookService bookService;
+    private ModelMapper modelMapper;
 
-    public BookController(BookService service) {
-        this.service = service;
+    public BookController(BookService service, ModelMapper mapper) {
+
+        this.bookService = service;
+        this.modelMapper = mapper;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BookDTO create(@RequestBody BookDTO dto){
 
-        Book entity = mapper.map(dto, Book.class);
-        entity = service.save(entity);
-        return mapper.map(entity, BookDTO.class);
+        Book entity = modelMapper.map(dto, Book.class);
+        entity = bookService.save(entity);
+        return modelMapper.map(entity, BookDTO.class);
     }
 }
